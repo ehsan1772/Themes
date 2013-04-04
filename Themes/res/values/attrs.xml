@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="textView1Size" format="dimension" />
+    <attr name="textView1Color" format="color" />
+    <attr name="textView2Size" format="dimension" />
+    <attr name="textView2Color" format="color" />
+    <attr name="textView3Size" format="dimension" />
+    <attr name="textView3Color" format="color" />
+    <attr name="buttonSize" format="dimension" />
+    <attr name="buttonColor" format="color" />
+    <attr name="buttonBackground" format="reference" />
+    <attr name="buttonLeftDrawable" format="reference" />
+    <attr name="toggleDrawable" format="reference" />
+
+</resources>
