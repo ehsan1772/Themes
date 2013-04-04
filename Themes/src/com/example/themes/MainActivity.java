@@ -11,31 +11,49 @@ public class MainActivity extends Activity {
 
 	private boolean setDark;
 	private int theme; 
+	private Bundle extra;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Boolean test = null;
-        try{
-        test = getIntent().getExtras().getBoolean("Set_Dark");
-        } catch (Exception e){}
-        if (test == null)
-        {
-		setTheme(R.style.LightTheme);
-		theme = R.style.LightTheme;
-        } else {
-        	if(test){
-        		setTheme(R.style.DarkTheme);
-        		theme =R.style.DarkTheme;
-        	} else {
-        		setTheme(R.style.LightTheme);
-        		theme =R.style.LightTheme;
-        	}
-        }
+        extra = getIntent().getExtras();
+        
+        theme = getMyTheme(extra);
+        setTheme(theme);
         setContentView(R.layout.activity_main);
 
         
     }
 
+    private int getMyTheme(Bundle extra){
+    	
+    	if (extra == null)
+    		return openTheme();
+  
+    	
+    	setDark = extra.getBoolean("Set_Dark");
+    	
+        	if(setDark){
+        		return R.style.DarkTheme;
+        	} else {
+        		return R.style.LightTheme;
+        	}
+        
+    	
+    }
+    
+    private void saveTheme(){
+    	int theme;
+    	if(setDark)
+    		theme =  R.style.DarkTheme;
+    	else
+    		theme = R.style.LightTheme;
+    	
+    	this.getSharedPreferences("TheTheme", Activity.MODE_PRIVATE).edit().putInt("Theme", theme).commit();
+    }
+    
+    private int openTheme(){
+    	return this.getSharedPreferences("TheTheme", Activity.MODE_PRIVATE).getInt("Theme", R.style.LightTheme);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,6 +69,7 @@ public class MainActivity extends Activity {
 			setDark = false;
 		else
 			setDark = true;
+		saveTheme();
 		Intent intent = getIntent();
 		intent.putExtra("Set_Dark", setDark);
 		finish();

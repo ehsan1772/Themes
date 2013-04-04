@@ -23,7 +23,7 @@
         android:background="?buttonBackground"
         android:drawableLeft="@drawable/ic_launcher_android"
         android:textColor="?buttonColor"
-        android:text="CustomButtonStyle" />
+        android:text="CustomButtonStyle  " />
 
     <TextView
         android:id="@+id/textView2"
